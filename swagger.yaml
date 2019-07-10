@@ -7,6 +7,7 @@ info:
 basePath: /
 schemes:
   - http
+  - https
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -17,7 +18,7 @@ paths:
     post:
       tags:
         - Auth
-      summary: Performs user registration.
+      summary: Performs user registration
       description: 'Performs user registration'
       consumes:
         - application/json
@@ -48,7 +49,7 @@ paths:
     post:
       tags:
         - Auth
-      summary: Performs user login.
+      summary: Performs user login
       description: 'Performs user login'
       consumes:
         - application/json
@@ -320,8 +321,8 @@ paths:
         - Bearer: []
       tags:
         - Messages
-      summary: Delete a message
-      description: Delete a message
+      summary: List all unread messages
+      description: List all unread messages
       produces:
         - application/json
       responses:

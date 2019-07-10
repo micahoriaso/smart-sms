@@ -14,7 +14,7 @@ import {resourceNotFoundException} from './middlewares/error.middleware';
 const swaggerDocument = YAML.load('./swagger.yaml');
 
 dotenv.config();
-mongoose.connect("mongodb://localhost/smartsms");
+mongoose.connect(process.env.MONGO_DB_URI);
 
 let app = express();
 
