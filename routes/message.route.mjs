@@ -1,7 +1,6 @@
 import express from 'express';
 import {validations} from '../models/message.model';
 import {checkValidationResult} from '../middlewares/checkValidationResult'
-import {checkJWT} from '../middlewares/auth.middleware';
 import {
   create,
   getAll,
@@ -13,24 +12,18 @@ import {
 
 const router = express.Router();
 
-router.post('/create', checkJWT);
-router.post('/create', validations.create);
-router.post('/create', checkValidationResult);
-router.post('/create', create);
+router.post('/', validations.create);
+router.post('/', checkValidationResult);
+router.post('/', create);
 
-router.get('/get', checkJWT);
-router.get('/get', getAll);
+router.get('/', getAll);
 
-router.get('/unread', checkJWT);
 router.get('/unread', getAllUnread);
 
-router.get('/get/:id', checkJWT);
-router.get('/get/:id', getOne);
+router.get('/:id', getOne);
 
-router.post('/read/:id', checkJWT);
 router.post('/read/:id', readOne);
 
-router.delete('/delete/:id', checkJWT);
-router.delete('/delete/:id', deleteOne);
+router.delete('/:id', deleteOne);
 
 export default router;
