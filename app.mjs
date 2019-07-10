@@ -14,14 +14,15 @@ import {resourceNotFoundException} from './middlewares/error.middleware';
 const swaggerDocument = YAML.load('./swagger.yaml');
 
 dotenv.config();
-mongoose.connect(process.env.MONGO_DB_URI);
+mongoose.set('useCreateIndex', true);
+mongoose.connect(process.env.MONGO_DB_URI,  {useNewUrlParser: true });
 
 let app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/auth', authRouter);
 app.use('/messages', checkJWT, messagesRouter);
