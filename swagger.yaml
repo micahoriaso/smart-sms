@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Smart SMS API Specification
   description: >-
-    The official API documentation for smart-sms. You will need to have a running instance of the [smart-sms](https://github.com/micahoriaso/smart-sms) to test these API endpoints on your local environment.
+    The official API documentation for smart-sms. You will need to have a running instance of the [smart-sms](https://github.com/micahoriaso/smart-sms) to test these API endpoints on your local environment. For this sample, you can use **phoneNumber**:`9999999989` and **password**: `11111111` to login. When adding auth header click on the authorize button and add the authentication header in this format `Bearer JWT-token`
   version: 1.0.0
 basePath: /
 schemes:

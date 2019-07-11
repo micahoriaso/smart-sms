@@ -44,10 +44,7 @@ export const getAllUnread = async (req, res, next) => {
   const {phoneNumber} = req.user;
   const messages =  await Message.find({
     readAt: null,
-    $or:[
-      {fromId: phoneNumber},
-      {toId: phoneNumber}
-    ] }).exec();
+    toId: phoneNumber}).exec();
 
   if (messages.length < 0)
     return res.status(404).send({message: 'You have no unread messages'})
@@ -74,10 +71,7 @@ export const readOne = async (req, res, next) => {
   const {phoneNumber} = req.user;
   const message =  await Message.findOne({
     _id: req.params.id,
-    $or:[
-      {fromId: phoneNumber},
-      {toId: phoneNumber}
-    ] }).exec();
+    toId: phoneNumber }).exec();
 
   if (!message)
     return res.status(404).send({message: 'Message does not exist'})
@@ -92,10 +86,7 @@ export const deleteOne = async (req, res, next) => {
   const {phoneNumber} = req.user;
   const message =  await Message.findOne({
     _id: req.params.id,
-    $or:[
-      {fromId: phoneNumber},
-      {toId: phoneNumber}
-    ] }).exec();
+    fromId: phoneNumber }).exec();
   if (!message)
     return res.status(404).send({message: 'Message does not exist'})
 
