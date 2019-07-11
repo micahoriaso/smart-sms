@@ -37,7 +37,7 @@ export const getAll = async (req, res, next) => {
   const {phoneNumber} = req.user;
   const contacts =  await Contact.find({myId: phoneNumber}).exec();
 
-  if (contacts.length < 0)
+  if (contacts.length < 1)
     return res.status(404).send({message: 'You have no contacts'})
 
   res.status(200).send({contacts : contacts});
