@@ -14,6 +14,11 @@ export const validations =
     check('text', 'Invalid message')
     .isString()
     .withMessage('Must be a string')
+    .custom( async value => {
+      if (value.trim() === '') {
+        return Promise.reject('Message must be a string')
+      }
+    })
     .isLength({ min: 1, max: 256 })
     .withMessage('Must be between 1 - 256 characters long'),
 

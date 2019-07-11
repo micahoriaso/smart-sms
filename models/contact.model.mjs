@@ -14,8 +14,13 @@ export const validations =
     .optional()
     .isString()
     .withMessage('Must be a string')
-    .isLength({ min: 5 })
-    .withMessage('Must be at least 5 characters long'),
+    .custom( async value => {
+      if (value.trim() === '') {
+        return Promise.reject('Name must be a string')
+      }
+    })
+    .isLength({ min: 2 })
+    .withMessage('Must be at least 2 characters long'),
 
     // toId input
     check('phoneNumber', 'Invalid phone number')
@@ -32,8 +37,13 @@ export const validations =
     check('name', 'Invalid name')
     .isString()
     .withMessage('Must be a string')
-    .isLength({ min: 5 })
-    .withMessage('Must be at least 5 characters long'),
+    .custom( async value => {
+      if (value.trim() === '') {
+        return Promise.reject('Name must be a string')
+      }
+    })
+    .isLength({ min: 2 })
+    .withMessage('Must be at least 2 characters long'),
   ],
 };
 
