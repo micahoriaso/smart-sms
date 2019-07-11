@@ -11,13 +11,14 @@ export const validations =
   [
     // Name input
     check('name', 'Invalid name')
-    .isString()
+    .isAlphanumeric()
     .withMessage('Must be a string')
-    .isLength({ min: 5 })
-    .withMessage('Must be at least 5 characters long'),
+    .isLength({ min: 2 })
+    .withMessage('Must be at least 2 characters long'),
 
     // Phone input
     check('phoneNumber', 'Invalid phone number')
+    .isAlphanumeric()
     .custom((value) => (typeof value === 'string'))
     .custom(value => (!isNaN(Number(value))))
     .custom( async value => {
@@ -29,8 +30,13 @@ export const validations =
 
     // password input
     check('password', 'Password must be more than 8 characters long')
-    .custom((value) => (typeof value === 'string'))
+    .isString()
     .withMessage('Password must be a string')
+    .custom( async value => {
+      if (value.trim() === '') {
+        return Promise.reject('Password must be a string')
+      }
+    })
     .isLength({ min: 8 })
   ],
   login:
