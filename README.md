@@ -7,6 +7,7 @@ A NodeJS app that is used to manage SMS messages and contacts
 - $ git clone https://github.com/micahoriaso/smart-sms.git
 - $ cd smart-sms
 - $ npm install
+- cp .env.sample .env (and set the values for JWT_SECRET_KEY and MONGO_DB_URI)
 - $ npm start
 
 # Technologies
