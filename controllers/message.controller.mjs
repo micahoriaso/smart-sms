@@ -34,7 +34,7 @@ export const getAll = async (req, res, next) => {
       {toId: phoneNumber}
     ] }).exec();
 
-  if (messages.length < 0)
+  if (messages.length < 1)
     return res.status(404).send({message: 'You have no messages'})
 
   res.status(200).send({messages : messages});
@@ -46,7 +46,7 @@ export const getAllUnread = async (req, res, next) => {
     readAt: null,
     toId: phoneNumber}).exec();
 
-  if (messages.length < 0)
+  if (messages.length < 1)
     return res.status(404).send({message: 'You have no unread messages'})
 
   res.status(200).send({messages : messages});
